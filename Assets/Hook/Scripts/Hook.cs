@@ -23,6 +23,10 @@ public class Hook : MonoBehaviour
     //isHooked(勾住中?)
     public bool isHooked;
 
+    //玩家位移啟用?
+    public bool isDisplacementFunc;
+    public bool player_flying;
+
     private Transform m_parent;
 
     private List<PlanetMeme> hookedPlanets = new List<PlanetMeme>();
@@ -44,6 +48,8 @@ public class Hook : MonoBehaviour
         hookDispearDis = 2f;
         isHooked = false;
 
+        isDisplacementFunc = true;
+        player_flying = false;
     }
 
     // Update is called once per frame
@@ -78,6 +84,15 @@ public class Hook : MonoBehaviour
                     hookedPlanets[i].OnCaptured();
                 }
                 Destroy(this.gameObject, 0.01f);
+                player_flying = false;
+            }
+        }
+
+        if (isDisplacementFunc)
+        {
+            if (player_flying)
+            {
+                m_parent.GetComponent<Rigidbody>().AddForce(-0.005f * (v_force - m_parent.transform.position) * hookSpeed);
             }
         }
     }
@@ -98,6 +113,7 @@ public class Hook : MonoBehaviour
     {
         if (isHooked)
         {
+            player_flying = true;
             return;
         }
 
@@ -121,3 +137,4 @@ public class Hook : MonoBehaviour
         isFlying = true;
     }
 }
+//player 家鋼體
