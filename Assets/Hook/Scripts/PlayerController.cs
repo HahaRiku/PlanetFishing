@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Hook;
 
-    //hookEnerge(π_§l≥—æl¶∏º∆)
+    //hookEnerge(Èâ§Â≠êÂâ©È§òÊ¨°Êï∏)
     public int hookEnerge;
 
     public float hookColdown;
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
             Debug.Log(pos);
 
             hookColdown = hookColdownMax;
+
+            AudioManagerScript.Instance.PlayAudioClip("Áµ±Á•û");
         }
 
 
