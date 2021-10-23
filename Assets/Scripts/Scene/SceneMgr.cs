@@ -1,11 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneMgr : MonoBehaviour
 {
-    void Start()
+    public void ClickToStart()
     {
-        
+        SceneManager.LoadScene(1);
+    }
+
+    public void ClickToQuit()
+    {
+        Application.Quit();
     }
 }
