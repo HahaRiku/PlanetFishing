@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlanetMemeManager : MonoBehaviour {
     [SerializeField] private GameObject PlanetMemePrefab = null;
+    [SerializeField] private Sprite[] PlanetsSprite;
+    [SerializeField] private CirclingRoute circlingRoute = null;
 
     //Generating paramaters
     private float spaceScale_min;
@@ -50,12 +52,24 @@ public class PlanetMemeManager : MonoBehaviour {
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
         float x = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(random_Pow2ofX);
         float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //因為不轉視角 y先都用正的
-        GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 0), Quaternion.identity);
+        GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 0), Quaternion.Euler(0, 0, Random.Range(0, 359)));
+        PlanetMeme planetMeme = planet.GetComponent<PlanetMeme>();
+        PlanetMemeType type = Random.Range(0, 10) > 4 ? PlanetMemeType.Good : PlanetMemeType.Bad;
+        planetMeme.OnGenerated(type, PlanetsSprite[Random.Range(0, PlanetsSprite.Length)], this);
 
         planetsInGame.Add(planet);
 
         if(planetsInGame.Count < memeNumMax)
             Invoke("GenerateNewPlanet", generateInterval);
+    }
+
+    /// <summary>
+    /// 星球被抓到了 丟去給circlingRoute管理(成為衛星)
+    /// </summary>
+    /// <param name="planet"></param>
+    public void OnPlanetCaptured(GameObject planet) {
+        planetsInGame.Remove(planet);
+        circlingRoute.ReceiveNewPlanet(planet);
     }
 }
 

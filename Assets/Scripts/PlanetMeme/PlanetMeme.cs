@@ -5,6 +5,10 @@ using UnityEngine;
 public class PlanetMeme : MonoBehaviour {
     private PlanetMemeType type = PlanetMemeType.Good;
     private PlanetMemeStatus status = PlanetMemeStatus.Wild;
+
+    private PlanetMemeManager manager = null;
+
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
     
     // Start is called before the first frame update
     void Start() {
@@ -19,11 +23,13 @@ public class PlanetMeme : MonoBehaviour {
     /// <summary>
     /// 被生成時 要決定成為怎樣的星球
     /// </summary>
-    public void OnGenerated(PlanetMemeType _type) {
+    public void OnGenerated(PlanetMemeType _type, Sprite sp, PlanetMemeManager _manager) {
         type = _type;
         status = PlanetMemeStatus.Wild;
+        manager = _manager;
 
         // Set image or something
+        spriteRenderer.sprite = sp;
     }
 
     /// <summary>
@@ -44,5 +50,7 @@ public class PlanetMeme : MonoBehaviour {
         Debug.Log("Planet " + name + " become a satellite.");
 
         status = PlanetMemeStatus.Satellite;
+
+        manager.OnPlanetCaptured(gameObject);
     }
 }
