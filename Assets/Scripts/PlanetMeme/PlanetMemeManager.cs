@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,12 +25,12 @@ public class PlanetMemeManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// ªì©l¤Æ°g¦]¬P²y¥Í¦¨³]©w
+    /// åˆå§‹åŒ–è¿·å› æ˜Ÿçƒç”Ÿæˆè¨­å®š
     /// </summary>
-    /// <param name="_spaceScale"> ¦h¤Ö¶ZÂ÷¤ºÀH¾÷¦ì¸m¥Í¦¨ </param>
-    /// <param name="_memeNumMax"> ³õ¤W³Ì¤j¼Æ¶q </param>
-    /// <param name="_playerObj"> ª±®a¦ì¸m </param>
-    /// <param name="_generateInterval"> ¥Í¦¨ªº®É¶¡¶¡¹j </param>
+    /// <param name="_spaceScale"> å¤šå°‘è·é›¢å…§éš¨æ©Ÿä½ç½®ç”Ÿæˆ </param>
+    /// <param name="_memeNumMax"> å ´ä¸Šæœ€å¤§æ•¸é‡ </param>
+    /// <param name="_playerObj"> ç©å®¶ä½ç½® </param>
+    /// <param name="_generateInterval"> ç”Ÿæˆçš„æ™‚é–“é–“éš” </param>
     public void Init(float _spaceScale_min, float _spaceScale_max, int _memeNumMax, GameObject _playerObj, float _generateInterval) {
         spaceScale_min = _spaceScale_min;
         spaceScale_max = _spaceScale_max;
@@ -46,10 +46,10 @@ public class PlanetMemeManager : MonoBehaviour {
     private void GenerateNewPlanet() {
 
         float distance = Random.Range(spaceScale_min, spaceScale_max);
-        // x^2 + y^2 = d^2 -> random ¤p©ód^2ªº¼Æ¶}®Ú¸¹µ¹x¥Î¡Ay¦A«áÄò±o¥X
+        // x^2 + y^2 = d^2 -> random å°æ–¼d^2çš„æ•¸é–‹æ ¹è™Ÿçµ¦xç”¨ï¼Œyå†å¾ŒçºŒå¾—å‡º
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
         float x = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(random_Pow2ofX);
-        float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //¦]¬°¤£Âàµø¨¤ y¥ı³£¥Î¥¿ªº
+        float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //å› ç‚ºä¸è½‰è¦–è§’ yå…ˆéƒ½ç”¨æ­£çš„
         GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 0), Quaternion.identity);
 
         planetsInGame.Add(planet);
@@ -65,6 +65,6 @@ public enum PlanetMemeType {
 }
 
 public enum PlanetMemeStatus {
-    Wild,   // µ¥«İ³Q§ì
-    Satellite   // ÅÜ¦¨¤F½Ã¬P
+    Wild,   // ç­‰å¾…è¢«æŠ“
+    Satellite   // è®Šæˆäº†è¡›æ˜Ÿ
 }

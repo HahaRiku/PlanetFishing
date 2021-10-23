@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class PlanetMeme : MonoBehaviour {
     }
 
     /// <summary>
-    /// ³Q¥Í¦¨®É ­n¨M©w¦¨¬°«ç¼Ëªº¬P²y
+    /// è¢«ç”Ÿæˆæ™‚ è¦æ±ºå®šæˆç‚ºæ€æ¨£çš„æ˜Ÿçƒ
     /// </summary>
     public void OnGenerated(PlanetMemeType _type) {
         type = _type;
@@ -27,7 +27,7 @@ public class PlanetMeme : MonoBehaviour {
     }
 
     /// <summary>
-    /// ¹_¨ì¤F
+    /// é‰¤åˆ°äº†
     /// </summary>
     public void OnHooked() {
         Debug.Log("Planet " + name + " got hooked.");
@@ -38,7 +38,7 @@ public class PlanetMeme : MonoBehaviour {
     }
 
     /// <summary>
-    /// ³Q®·Àò¦¨¬°½Ã¬P
+    /// è¢«æ•ç²æˆç‚ºè¡›æ˜Ÿ
     /// </summary>
     public void OnCaptured() {
         Debug.Log("Planet " + name + " become a satellite.");
