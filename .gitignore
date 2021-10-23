@@ -44,3 +44,15 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Logs/shadercompiler-UnityShaderCompiler.exe3.log
+*.log
+*.log
+Logs/shadercompiler-UnityShaderCompiler.exe2.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/AssetImportWorker0.log
+*.log
+*.log
+*.log
+Logs/shadercompiler-AssetImportWorker0.log
+Logs/AssetImportWorker0.log
+Logs/AssetImportWorker0-prev.log
