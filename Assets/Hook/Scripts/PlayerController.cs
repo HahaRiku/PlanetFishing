@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float hookColdown;
     public float hookColdownMax;
 
+    public GameObject tempObj;
+
     public float Delta;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         hookColdown -= Time.deltaTime;
-        if (Input.GetMouseButton(0) && hookColdown <= 0.0f)
+
+        //[左鍵] 發射
+        if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && hookColdown <= 0.0f)
         {
             Vector3 pos = GetMousePosition();
 
@@ -41,6 +45,18 @@ public class PlayerController : MonoBehaviour
             AudioManagerScript.Instance.CoverPlayAudioClip("Hey");
         }
 
+        //[右鍵] 緊急切斷
+        if (Input.GetMouseButton(1) && hookColdown <= 0.0f)
+        {
+            var temp = GameObject.Find("Hook(Clone)");
+            if (temp != null)
+            {
+                
+                Destroy(temp.gameObject);
+            }
+
+            hookColdown = 0;
+        }
 
     }
 
@@ -51,7 +67,7 @@ public class PlayerController : MonoBehaviour
         if (hookEnerge <= 0)
             return;
 
-        GameObject tempObj = Instantiate(Hook);
+        tempObj = Instantiate(Hook);
         tempObj.GetComponent<Hook>().HookLaunchTo(_mousePos);
         tempObj.gameObject.transform.parent = this.transform;
 

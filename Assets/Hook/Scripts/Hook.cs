@@ -44,8 +44,8 @@ public class Hook : MonoBehaviour
         isFlying = true;
 
         hookLength = 540;
-        hookSpeed = 10;
-        hookDispearDis = 2f;
+        hookSpeed = 15;
+        hookDispearDis = 3.5f;
         isHooked = false;
 
         isDisplacementFunc = true;
@@ -63,7 +63,9 @@ public class Hook : MonoBehaviour
 
         //鉤子移動
         if (isFlying && nowHookLength < hookLength)
-            m_rigidbody.AddForce((v_force-m_parent.transform.position) * hookSpeed);
+        {
+            m_rigidbody.AddForce((v_force - m_parent.transform.position) * hookSpeed);
+        }
         else
         {
             m_rigidbody.velocity = Vector3.zero;
@@ -74,7 +76,8 @@ public class Hook : MonoBehaviour
 
         if (!isFlying)
         {
-            m_rigidbody.AddForce(v_force * hookSpeed);
+            //拉回來的力
+            m_rigidbody.AddForce(v_force * hookSpeed * 0.75f);
             
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
@@ -92,7 +95,9 @@ public class Hook : MonoBehaviour
         {
             if (player_flying)
             {
-                m_parent.GetComponent<Rigidbody>().AddForce(-0.02f * (v_force - m_parent.transform.position) * hookSpeed);
+                var forceVec = (v_force - m_parent.transform.position);
+                m_parent.GetComponent<Rigidbody>().AddForce(-1 * hookSpeed * (2f * forceVec.normalized + 0.3f * forceVec));
+                
             }
         }
     }
