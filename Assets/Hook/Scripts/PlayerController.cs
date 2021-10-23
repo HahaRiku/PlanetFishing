@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
         PlayerPos = new Vector2(transform.position.x, transform.position.y);
         hookColdownMax = 0.75f;
         hookColdown = hookColdownMax;
+
+        hookEnerge = 5;
     }
 
     // Update is called once per frame
@@ -44,8 +46,11 @@ public class PlayerController : MonoBehaviour
     {
         //GameObject temp = Instantiate(Hook);
         //temp.transform.position = _mousePos;
+        if (hookEnerge <= 0)
+            return;
 
         Instantiate(Hook).GetComponent<Hook>().HookLaunchTo(_mousePos);
+        hookEnerge--;
     }
 
     public Vector3 GetMousePosition()

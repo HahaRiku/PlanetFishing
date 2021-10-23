@@ -20,6 +20,9 @@ public class Hook : MonoBehaviour
     //hookDispearDis(消失距離)
     public float hookDispearDis;
 
+    //isHooked(勾住中?)
+    public bool isHooked;
+
     private List<PlanetMeme> hookedPlanets = new List<PlanetMeme>();
 
 
@@ -35,20 +38,18 @@ public class Hook : MonoBehaviour
         hookLength = 540;
         hookSpeed = 10;
         hookDispearDis = 2f;
+        isHooked = false;
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //目前繩子長度
         nowHookLength = (m_player.transform.position - transform.position).sqrMagnitude;
-        //繩子
+
+        //畫繩子
         DrawLine();
-
-
-        //鉤子鉤東西
-        
-
 
         //鉤子移動
         if (isFlying && nowHookLength < hookLength)
@@ -77,7 +78,7 @@ public class Hook : MonoBehaviour
         }
     }
 
-
+    //畫鉤子的線(鎖鏈)
     public void DrawLine()
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
@@ -88,9 +89,15 @@ public class Hook : MonoBehaviour
         lineRenderer.alignment = LineAlignment.View;
     }
 
+    //鉤子碰到時觸發
     public void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag == "Meme" && collider.gameObject.name != m_player.name)
+        if (isHooked)
+        {
+            return;
+        }
+
+        if(collider.tag == "Meme" && collider.gameObject.name != m_player.name )
         {
             Debug.Log("鉤子碰撞到了[迷因星球]: " + collider.gameObject.name + " !!!");
 
@@ -98,7 +105,8 @@ public class Hook : MonoBehaviour
             collider.gameObject.transform.parent = this.gameObject.transform;
             hookedPlanets.Add(collider.gameObject.GetComponent<PlanetMeme>());
             hookedPlanets[hookedPlanets.Count - 1].OnHooked();
-            isFlying = false;
+            isFlying = false;// 正在回拉
+            isHooked = true;// 正在勾住
         }
         
     }
