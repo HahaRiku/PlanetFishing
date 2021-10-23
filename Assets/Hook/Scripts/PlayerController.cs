@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
             hookColdown = hookColdownMax;
 
-            AudioManagerScript.Instance.PlayAudioClip("統神");
+            AudioManagerScript.Instance.CoverPlayAudioClip("Hey");
         }
 
 
