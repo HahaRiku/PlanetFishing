@@ -51,7 +51,7 @@ public class PlanetMemeManager : MonoBehaviour {
         // x^2 + y^2 = d^2 -> random 小於d^2的數開根號給x用，y再後續得出
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
         float x = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(random_Pow2ofX);
-        float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //因為不轉視角 y先都用正的
+        float y = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);
         Vector3 targetPos = new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 10);
 
         float distance_left = Mathf.Abs(targetPos.x - (-25));    //左邊界-25 右邊界25 上25 下-9
