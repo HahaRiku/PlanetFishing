@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlayerPos = new Vector2(transform.position.x, transform.position.y);
-        hookColdownMax = 1;
+        hookColdownMax = 0.75f;
         hookColdown = hookColdownMax;
     }
 

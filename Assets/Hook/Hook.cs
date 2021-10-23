@@ -32,7 +32,7 @@ public class Hook : MonoBehaviour
 
         hookLength = 80;
         hookSpeed = 10;
-        hookDispearDis = 1f;
+        hookDispearDis = 2f;
 
     }
 
@@ -41,6 +41,11 @@ public class Hook : MonoBehaviour
     {
         nowHookLength = (m_player.transform.position - transform.position).sqrMagnitude;
 
+        //鉤子鉤東西
+        
+
+
+        //鉤子移動
         if (isFlying && nowHookLength < hookLength)
             m_rigidbody.AddForce(v_force * hookSpeed);
         else
@@ -58,9 +63,22 @@ public class Hook : MonoBehaviour
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
             {
-                Destroy(this.gameObject, 0.2f);
+                Destroy(this.gameObject, 0.01f);
             }
         }
+    }
+
+    public void OnTriggerEnter(Collider collider)
+    {
+        if(collider.tag == "Meme" && collider.gameObject.name != m_player.name)
+        {
+            Debug.Log("鉤子碰撞到了[迷因星球]: " + collider.gameObject.name + " !!!");
+
+            collider.tag = "Untagged";
+            collider.gameObject.transform.parent = this.gameObject.transform;
+
+        }
+        
     }
 
     public void HookLaunchTo(Vector3 _force)
