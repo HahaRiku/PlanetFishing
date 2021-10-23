@@ -5,40 +5,52 @@ using UnityEngine;
 public class Hook : MonoBehaviour
 {
     public GameObject m_player;
-
     public Rigidbody m_rigidbody;
-    public Vector3 actTo;
 
     public bool isFlying;
-
-
     public Vector3 v_force;
-    public float force;
+    public float nowHookLength;
+
+    //hookLength(鉤子長度)
+    public float hookLength;
+
+    //hookSpeed(出鉤速度)
+    public float hookSpeed;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        m_rigidbody = GetComponent<Rigidbody>();
+        //位移到玩家身上
+        transform.position = m_player.transform.position;
 
+        m_rigidbody = GetComponent<Rigidbody>();
         isFlying = true;
 
- 
+        hookLength = 80;
+        hookSpeed = 10;
+        
 
-        transform.position = m_player.transform.position;
-        force = 10;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isFlying)
-            m_rigidbody.AddForce(v_force * force);
+        nowHookLength = (m_player.transform.position - transform.position).sqrMagnitude;
+
+        if (isFlying && nowHookLength < hookLength)
+            m_rigidbody.AddForce(v_force * hookSpeed);
+        else
+        {
+            m_rigidbody.velocity = Vector3.zero;
+            m_rigidbody.angularVelocity = Vector3.zero;
+        }
     }
 
-    public void SetAct(Vector3 _force)
+    public void HookLaunch(Vector3 _force)
     {
         v_force = _force;
-        Debug.Log("11111");
         isFlying = true;
     }
 }

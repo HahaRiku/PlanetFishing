@@ -96,11 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68829f8942340d24e9547c37f01d020b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 467050732428715652, guid: 52dd482a7a343b2418f02df7690d2ec5, type: 3}
+  m_player: {fileID: 1316384689165122526, guid: 52dd482a7a343b2418f02df7690d2ec5, type: 3}
   m_rigidbody: {fileID: 0}
-  actTo: {x: 0, y: 0, z: 0}
   isFlying: 0
-  force: 30
+  v_force: {x: 0, y: 0, z: 0}
+  nowHookLength: 0
+  hookLength: 0
+  hookSpeed: 0
 --- !u!65 &6956270373198936671
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Hook;
 
+    //hookEnerge(¹_¤l³Ñ¾l¦¸¼Æ)
+    public int hookEnerge;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Vector3 pos = GetMousePosition();
 
@@ -27,16 +29,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(pos);
         }
         
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log("wwww");
-        }
 
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("wwww");
-        }
     }
 
     public void ShootHook(Vector3 _mousePos)
@@ -44,9 +37,7 @@ public class PlayerController : MonoBehaviour
         //GameObject temp = Instantiate(Hook);
         //temp.transform.position = _mousePos;
 
-
-        Instantiate(Hook).GetComponent<Hook>().SetAct(_mousePos);
-
+        Instantiate(Hook).GetComponent<Hook>().HookLaunch(_mousePos);
     }
 
     public Vector3 GetMousePosition()
