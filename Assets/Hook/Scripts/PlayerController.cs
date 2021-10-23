@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         hookColdownMax = 0.75f;
         hookColdown = hookColdownMax;
 
-        hookEnerge = 5;
+        hookEnerge = 115;
     }
 
     // Update is called once per frame
