@@ -76,7 +76,7 @@ public class Hook : MonoBehaviour
 
             collider.tag = "Untagged";
             collider.gameObject.transform.parent = this.gameObject.transform;
-            isFlying = false;
+
         }
         
     }
