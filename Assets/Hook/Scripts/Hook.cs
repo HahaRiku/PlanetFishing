@@ -23,14 +23,22 @@ public class Hook : MonoBehaviour
     //isHooked(勾住中?)
     public bool isHooked;
 
+    //玩家位移啟用?
+    public bool isDisplacementFunc;
+    public bool player_flying;
+
+    private Transform m_parent;
+
     private List<PlanetMeme> hookedPlanets = new List<PlanetMeme>();
 
 
     // Start is called before the first frame update
     void Start()
     {
+        m_parent = this.transform.parent;
         //位移到玩家身上
-        transform.position = m_player.transform.position;
+        //transform.position = m_player.transform.position;
+        transform.position = m_parent.transform.position;
 
         m_rigidbody = GetComponent<Rigidbody>();
         isFlying = true;
@@ -40,26 +48,28 @@ public class Hook : MonoBehaviour
         hookDispearDis = 2f;
         isHooked = false;
 
+        isDisplacementFunc = true;
+        player_flying = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //目前繩子長度
-        nowHookLength = (m_player.transform.position - transform.position).sqrMagnitude;
+        nowHookLength = (m_parent.transform.position - transform.position).sqrMagnitude;
 
         //畫繩子
         DrawLine();
 
         //鉤子移動
         if (isFlying && nowHookLength < hookLength)
-            m_rigidbody.AddForce(v_force * hookSpeed);
+            m_rigidbody.AddForce((v_force-m_parent.transform.position) * hookSpeed);
         else
         {
             m_rigidbody.velocity = Vector3.zero;
             m_rigidbody.angularVelocity = Vector3.zero;
             isFlying = false;
-            v_force = (m_player.transform.position - transform.position) * hookSpeed;
+            v_force = (m_parent.transform.position - transform.position) * hookSpeed;
         }
 
         if (!isFlying)
@@ -74,6 +84,15 @@ public class Hook : MonoBehaviour
                     hookedPlanets[i].OnCaptured();
                 }
                 Destroy(this.gameObject, 0.01f);
+                player_flying = false;
+            }
+        }
+
+        if (isDisplacementFunc)
+        {
+            if (player_flying)
+            {
+                m_parent.GetComponent<Rigidbody>().AddForce(-0.005f * (v_force - m_parent.transform.position) * hookSpeed);
             }
         }
     }
@@ -82,8 +101,8 @@ public class Hook : MonoBehaviour
     public void DrawLine()
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.SetPosition(0, this.gameObject.transform.localPosition);
-        lineRenderer.SetPosition(1, m_player.gameObject.transform.localPosition);
+        lineRenderer.SetPosition(0, this.gameObject.transform.position);
+        lineRenderer.SetPosition(1, m_parent.gameObject.transform.localPosition);
 
 
         lineRenderer.alignment = LineAlignment.View;
@@ -94,10 +113,11 @@ public class Hook : MonoBehaviour
     {
         if (isHooked)
         {
+            player_flying = true;
             return;
         }
 
-        if(collider.tag == "Meme" && collider.gameObject.name != m_player.name )
+        if(collider.tag == "Meme" && collider.gameObject.name != m_parent.name )
         {
             Debug.Log("鉤子碰撞到了[迷因星球]: " + collider.gameObject.name + " !!!");
 
@@ -117,3 +137,4 @@ public class Hook : MonoBehaviour
         isFlying = true;
     }
 }
+//player 家鋼體

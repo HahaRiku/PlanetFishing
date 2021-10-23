@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         hookColdownMax = 0.75f;
         hookColdown = hookColdownMax;
 
-        hookEnerge = 5;
+        hookEnerge = 115;
     }
 
     // Update is called once per frame
@@ -51,7 +51,10 @@ public class PlayerController : MonoBehaviour
         if (hookEnerge <= 0)
             return;
 
-        Instantiate(Hook).GetComponent<Hook>().HookLaunchTo(_mousePos);
+        GameObject tempObj = Instantiate(Hook);
+        tempObj.GetComponent<Hook>().HookLaunchTo(_mousePos);
+        tempObj.gameObject.transform.parent = this.transform;
+
         hookEnerge--;
     }
 
