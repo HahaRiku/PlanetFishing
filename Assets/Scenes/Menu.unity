@@ -471,7 +471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 858361980}
         m_TargetAssemblyTypeName: SceneMgr, Assembly-CSharp
-        m_MethodName: ClickToStart
+        m_MethodName: ClickToQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
