@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        planetMemeManager.Init(3, 10, 10, player, 3);
+        planetMemeManager.Init(5, 30, 20, player, 0.5f);
         planetMemeManager.StartGenerating();
     }
 

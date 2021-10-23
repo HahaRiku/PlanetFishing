@@ -32,7 +32,7 @@ public class Hook : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         isFlying = true;
 
-        hookLength = 180;
+        hookLength = 540;
         hookSpeed = 10;
         hookDispearDis = 2f;
 
@@ -68,9 +68,9 @@ public class Hook : MonoBehaviour
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
             {
-                if(hookedPlanets.Count > 0) {
-                    hookedPlanets[hookedPlanets.Count - 1].transform.parent = transform.parent;
-                    hookedPlanets[hookedPlanets.Count - 1].OnCaptured();
+                for(int i = 0; i < hookedPlanets.Count; i++) {
+                    hookedPlanets[i].transform.parent = transform.parent;
+                    hookedPlanets[i].OnCaptured();
                 }
                 Destroy(this.gameObject, 0.01f);
             }
