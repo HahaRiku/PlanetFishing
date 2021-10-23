@@ -20,6 +20,8 @@ public class Hook : MonoBehaviour
     //hookDispearDis(消失距離)
     public float hookDispearDis;
 
+    private List<PlanetMeme> hookedPlanets = new List<PlanetMeme>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +68,10 @@ public class Hook : MonoBehaviour
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
             {
+                if(hookedPlanets.Count > 0) {
+                    hookedPlanets[hookedPlanets.Count - 1].transform.parent = transform.parent;
+                    hookedPlanets[hookedPlanets.Count - 1].OnCaptured();
+                }
                 Destroy(this.gameObject, 0.01f);
             }
         }
@@ -90,6 +96,8 @@ public class Hook : MonoBehaviour
 
             collider.tag = "Untagged";
             collider.gameObject.transform.parent = this.gameObject.transform;
+            hookedPlanets.Add(collider.gameObject.GetComponent<PlanetMeme>());
+            hookedPlanets[hookedPlanets.Count - 1].OnHooked();
             isFlying = false;
         }
         

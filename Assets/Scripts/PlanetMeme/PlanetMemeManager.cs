@@ -52,7 +52,7 @@ public class PlanetMemeManager : MonoBehaviour {
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
         float x = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(random_Pow2ofX);
         float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //因為不轉視角 y先都用正的
-        GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 0), Quaternion.Euler(0, 0, Random.Range(0, 359)));
+        GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 10), Quaternion.Euler(0, 0, Random.Range(0, 359)));
         PlanetMeme planetMeme = planet.GetComponent<PlanetMeme>();
         PlanetMemeType type = Random.Range(0, 10) > 4 ? PlanetMemeType.Good : PlanetMemeType.Bad;
         planetMeme.OnGenerated(type, PlanetsSprite[Random.Range(0, PlanetsSprite.Length)], this);
@@ -68,8 +68,10 @@ public class PlanetMemeManager : MonoBehaviour {
     /// </summary>
     /// <param name="planet"></param>
     public void OnPlanetCaptured(GameObject planet) {
+        CancelInvoke("GenerateNewPlanet");
         planetsInGame.Remove(planet);
         circlingRoute.ReceiveNewPlanet(planet);
+        Invoke("GenerateNewPlanet", generateInterval);
     }
 }
 
