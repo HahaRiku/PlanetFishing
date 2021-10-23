@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3925658854153055905}
   - component: {fileID: 89176323018858170}
   m_Layer: 0
-  m_Name: SE
+  m_Name: BGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,11 +41,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_audioClip: {fileID: 8300000, guid: eb175639eec6e954ab4f8ee0eebede88, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 3570464984951520352}
   - component: {fileID: 7236540714783366773}
   m_Layer: 0
-  m_Name: BGM
+  m_Name: SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -305,21 +305,21 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: d67d269e2ecc50748b6b2655790e6e98, type: 3}
     tag: []
-    volumeScale: 0.5
+    volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
   - name: Hey
     clips:
     - {fileID: 8300000, guid: 45eb63fff69a4d44c8421bd96b782936, type: 3}
     tag: []
-    volumeScale: 0.5
+    volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
   - name: "\u7D71\u795E"
     clips:
     - {fileID: 8300000, guid: 4af2fb3db22886549adab4d895a6b3e9, type: 3}
     tag: []
-    volumeScale: 0.5
+    volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
   audioSourcesPack:
@@ -336,7 +336,7 @@ MonoBehaviour:
     duration_fadeOut: 0.5
   - name: SE
     source: {fileID: 89176323018858170}
-    sourceNum: 0
+    sourceNum: 1
     tag: []
     fadeInEffectMode: 0
     fadeOutEffectMode: 0
