@@ -17,6 +17,8 @@ public class Hook : MonoBehaviour
     //hookSpeed(出鉤速度)
     public float hookSpeed;
 
+    //hookDispearDis(消失距離)
+    public float hookDispearDis;
 
 
     // Start is called before the first frame update
@@ -30,7 +32,7 @@ public class Hook : MonoBehaviour
 
         hookLength = 80;
         hookSpeed = 10;
-        
+        hookDispearDis = 1f;
 
     }
 
@@ -54,6 +56,10 @@ public class Hook : MonoBehaviour
             m_rigidbody.AddForce(v_force * hookSpeed);
             
             //離玩家太近消失
+            if (nowHookLength < hookDispearDis)
+            {
+                Destroy(this.gameObject, 0.2f);
+            }
         }
     }
 

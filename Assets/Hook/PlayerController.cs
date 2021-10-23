@@ -12,13 +12,15 @@ public class PlayerController : MonoBehaviour
     public int hookEnerge;
 
     public float hookColdown;
+    public float hookColdownMax;
 
     public float Delta;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPos = new Vector2(transform.position.x, transform.position.y);
-        hookColdown = Time.deltaTime;
+        hookColdownMax = 1;
+        hookColdown = hookColdownMax;
     }
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
             ShootHook(pos);
             Debug.Log(pos);
 
-            hookColdown = Time.deltaTime;
+            hookColdown = hookColdownMax;
         }
 
 
