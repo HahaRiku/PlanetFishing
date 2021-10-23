@@ -11,24 +11,30 @@ public class PlayerController : MonoBehaviour
     //hookEnerge(¹_¤l³Ñ¾l¦¸¼Æ)
     public int hookEnerge;
 
+    public float hookColdown;
+
+    public float Delta;
     // Start is called before the first frame update
     void Start()
     {
         PlayerPos = new Vector2(transform.position.x, transform.position.y);
-
+        hookColdown = Time.deltaTime;
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        hookColdown -= Time.deltaTime;
+        if (Input.GetMouseButton(0) && hookColdown <= 0.0f)
         {
             Vector3 pos = GetMousePosition();
 
             ShootHook(pos);
             Debug.Log(pos);
+
+            hookColdown = Time.deltaTime;
         }
-        
+
 
     }
 
@@ -37,7 +43,7 @@ public class PlayerController : MonoBehaviour
         //GameObject temp = Instantiate(Hook);
         //temp.transform.position = _mousePos;
 
-        Instantiate(Hook).GetComponent<Hook>().HookLaunch(_mousePos);
+        Instantiate(Hook).GetComponent<Hook>().HookLaunchTo(_mousePos);
     }
 
     public Vector3 GetMousePosition()

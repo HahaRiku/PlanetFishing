@@ -45,10 +45,19 @@ public class Hook : MonoBehaviour
         {
             m_rigidbody.velocity = Vector3.zero;
             m_rigidbody.angularVelocity = Vector3.zero;
+            isFlying = false;
+            v_force = (m_player.transform.position - transform.position) * hookSpeed;
+        }
+
+        if (!isFlying)
+        {
+            m_rigidbody.AddForce(v_force * hookSpeed);
+            
+            //離玩家太近消失
         }
     }
 
-    public void HookLaunch(Vector3 _force)
+    public void HookLaunchTo(Vector3 _force)
     {
         v_force = _force;
         isFlying = true;
