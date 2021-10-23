@@ -30,7 +30,7 @@ public class Hook : MonoBehaviour
         m_rigidbody = GetComponent<Rigidbody>();
         isFlying = true;
 
-        hookLength = 80;
+        hookLength = 180;
         hookSpeed = 10;
         hookDispearDis = 2f;
 
@@ -40,6 +40,9 @@ public class Hook : MonoBehaviour
     void FixedUpdate()
     {
         nowHookLength = (m_player.transform.position - transform.position).sqrMagnitude;
+        //繩子
+        DrawLine();
+
 
         //鉤子鉤東西
         
@@ -68,6 +71,17 @@ public class Hook : MonoBehaviour
         }
     }
 
+
+    public void DrawLine()
+    {
+        LineRenderer lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.SetPosition(0, this.gameObject.transform.localPosition);
+        lineRenderer.SetPosition(1, m_player.gameObject.transform.localPosition);
+
+
+        lineRenderer.alignment = LineAlignment.View;
+    }
+
     public void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "Meme" && collider.gameObject.name != m_player.name)
@@ -76,7 +90,7 @@ public class Hook : MonoBehaviour
 
             collider.tag = "Untagged";
             collider.gameObject.transform.parent = this.gameObject.transform;
-
+            isFlying = false;
         }
         
     }
