@@ -52,10 +52,31 @@ public class PlanetMemeManager : MonoBehaviour {
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
         float x = (Random.Range(0, 10) > 4 ? 1 : -1) * Mathf.Sqrt(random_Pow2ofX);
         float y = Mathf.Sqrt(Mathf.Pow(distance, 2) - random_Pow2ofX);  //因為不轉視角 y先都用正的
-        GameObject planet = Instantiate(PlanetMemePrefab, new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 10), Quaternion.Euler(0, 0, Random.Range(0, 359)));
+        Vector3 targetPos = new Vector3(playerObj.transform.localPosition.x + x, playerObj.transform.localPosition.y + y, 10);
+
+        float distance_left = Mathf.Abs(targetPos.x - (-25));    //左邊界-25 右邊界25 上25 下-9
+        float distance_right = Mathf.Abs(targetPos.x - (25));
+        float distance_up = Mathf.Abs(targetPos.y - (25));
+        float distance_down = Mathf.Abs(targetPos.y - (9));
+        float minDistance = Mathf.Min(distance_left, distance_right, distance_up, distance_down);
+        Vector3 originalPos;
+        if (minDistance == distance_left) {
+            originalPos = new Vector3(-26, 0, targetPos.z);
+        }
+        else if(minDistance == distance_right) {
+            originalPos = new Vector3(26, 0, targetPos.z);
+        }
+        else if (minDistance == distance_up) {
+            originalPos = new Vector3(0, 28, targetPos.z);
+        }
+        else {
+            originalPos = new Vector3(0, -9, targetPos.z);
+        }
+
+        GameObject planet = Instantiate(PlanetMemePrefab, originalPos, Quaternion.Euler(0, 0, Random.Range(0, 359)));
         PlanetMeme planetMeme = planet.GetComponent<PlanetMeme>();
         PlanetMemeType type = Random.Range(0, 10) > 4 ? PlanetMemeType.Good : PlanetMemeType.Bad;
-        planetMeme.OnGenerated(type, PlanetsSprite[Random.Range(0, PlanetsSprite.Length)], this);
+        planetMeme.OnGenerated(type, PlanetsSprite[Random.Range(0, PlanetsSprite.Length)], this, targetPos);
 
         planetsInGame.Add(planet);
 

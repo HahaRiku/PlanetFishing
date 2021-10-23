@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanetMeme : MonoBehaviour {
+    private const float moveSpeed = 0.5f;
+
     private PlanetMemeType type = PlanetMemeType.Good;
     private PlanetMemeStatus status = PlanetMemeStatus.Wild;
 
@@ -23,13 +25,15 @@ public class PlanetMeme : MonoBehaviour {
     /// <summary>
     /// 被生成時 要決定成為怎樣的星球
     /// </summary>
-    public void OnGenerated(PlanetMemeType _type, Sprite sp, PlanetMemeManager _manager) {
+    public void OnGenerated(PlanetMemeType _type, Sprite sp, PlanetMemeManager _manager, Vector3 _targetPos) {
         type = _type;
         status = PlanetMemeStatus.Wild;
         manager = _manager;
 
         // Set image or something
         spriteRenderer.sprite = sp;
+
+        iTween.MoveTo(gameObject, _targetPos, (_targetPos - transform.localPosition).magnitude / moveSpeed);
     }
 
     /// <summary>
@@ -37,6 +41,8 @@ public class PlanetMeme : MonoBehaviour {
     /// </summary>
     public void OnHooked() {
         Debug.Log("Planet " + name + " got hooked.");
+
+        iTween.Stop(gameObject);
 
         // TODO: Effect
 
@@ -50,7 +56,7 @@ public class PlanetMeme : MonoBehaviour {
         Debug.Log("Planet " + name + " become a satellite.");
 
         status = PlanetMemeStatus.Satellite;
-
+        
         manager.OnPlanetCaptured(gameObject);
     }
 }
