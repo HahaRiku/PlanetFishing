@@ -92,7 +92,7 @@ public class Hook : MonoBehaviour
         {
             if (player_flying)
             {
-                m_parent.GetComponent<Rigidbody>().AddForce(-0.005f * (v_force - m_parent.transform.position) * hookSpeed);
+                m_parent.GetComponent<Rigidbody>().AddForce(-0.02f * (v_force - m_parent.transform.position) * hookSpeed);
             }
         }
     }
