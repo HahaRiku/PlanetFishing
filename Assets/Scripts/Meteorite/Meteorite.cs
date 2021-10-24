@@ -55,6 +55,7 @@ public class Meteorite : MonoBehaviour
         if (radius > 1000 && lifeTime<0)
         {
             Destroy(this.gameObject);
+            System.GC.Collect();
         }
     }
 
