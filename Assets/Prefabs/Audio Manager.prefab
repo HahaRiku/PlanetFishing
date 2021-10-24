@@ -309,12 +309,12 @@ MonoBehaviour:
     volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
-  - name: Hey
+  - name: MenuBGM
     clips:
-    - {fileID: 8300000, guid: 45eb63fff69a4d44c8421bd96b782936, type: 3}
+    - {fileID: 8300000, guid: eb175639eec6e954ab4f8ee0eebede88, type: 3}
     tag: []
     volumeScale: 0.3
-    overlappingMode: 0
+    overlappingMode: 1
     outputSourceNum: 0
   - name: "\u904A\u6232\u5167bgm"
     clips:
@@ -394,7 +394,7 @@ MonoBehaviour:
     overlappingMode: 0
     outputSourceNum: 0
   audioSourcesPack:
-  - name: BGM
+  - name: SE
     source: {fileID: 7236540714783366773}
     sourceNum: 0
     tag: []
@@ -405,7 +405,7 @@ MonoBehaviour:
     iniParam_becomeLowerRate: 0
     duration_fadeIn: 0.5
     duration_fadeOut: 0.5
-  - name: SE
+  - name: BGM
     source: {fileID: 89176323018858170}
     sourceNum: 1
     tag: []
