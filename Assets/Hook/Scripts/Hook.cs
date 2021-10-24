@@ -98,10 +98,12 @@ public class Hook : MonoBehaviour
         {
             if (player_flying)
             {
-                //反作用位移力
+                //反作用位移力nowHookLength
                 var forceVec = -1 * v_force;//(v_force - m_parent.transform.position);
                 forceVec.z = 0f;
-                m_parent.GetComponent<Rigidbody>().AddForce(1.1f * hookSpeed * (7f * forceVec.normalized + 0.1f * forceVec));
+                forceVec = forceVec.normalized * hookSpeed;
+
+                m_parent.GetComponent<Rigidbody>().AddForce(15f * forceVec);
                 
             }
         }
