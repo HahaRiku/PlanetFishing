@@ -28,4 +28,9 @@ public class CameraController : MonoBehaviour
             camera_rb.AddTorque(0, 0, TrunForce);
         }
     }
+
+    //public void Shacked()
+    //{
+        
+    //}
 }
