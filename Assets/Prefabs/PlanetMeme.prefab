@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5455845105727794320}
   - component: {fileID: 7021410108449068555}
   - component: {fileID: 5990918060920843945}
+  - component: {fileID: 4395652274228129783}
   m_Layer: 0
   m_Name: PlanetMeme
   m_TagString: Meme
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5455845105727794320}
+  spriteAnimator: {fileID: 4395652274228129783}
 --- !u!65 &5990918060920843945
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +112,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 11.2, y: 11.4, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &4395652274228129783
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5771576689454607879}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ac2c6859ec16354387eb827ea9e2bcd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

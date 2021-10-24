@@ -10,17 +10,12 @@ public class PlanetMeme : MonoBehaviour {
 
     private PlanetMemeManager manager = null;
 
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
-    
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
+    private int badMemeNum;
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
+    [SerializeField] private SpriteRenderer spriteRenderer = null;
+
+    [SerializeField]
+    private Animator spriteAnimator = null;
 
     /// <summary>
     /// 被生成時 要決定成為怎樣的星球
@@ -30,8 +25,18 @@ public class PlanetMeme : MonoBehaviour {
         status = PlanetMemeStatus.Wild;
         manager = _manager;
 
+        bool isBad = (type == PlanetMemeType.Bad);
+        spriteAnimator.enabled = isBad;
         // Set image or something
-        spriteRenderer.sprite = sp;
+        if (isBad)
+        {
+            badMemeNum = Random.Range(0, badMemeType.Count);
+            spriteAnimator.SetTrigger(badMemeType[badMemeNum]);
+        }
+        else
+        {
+            spriteRenderer.sprite = sp;
+        }
 
         //iTween.MoveTo(gameObject, _targetPos, (_targetPos - transform.localPosition).magnitude / moveSpeed);
         iTween.MoveTo(gameObject, iTween.Hash(
@@ -51,7 +56,7 @@ public class PlanetMeme : MonoBehaviour {
 
         // TODO: Effect
 
-
+        GameManager.Instance.OnHookTypeCallback?.Invoke(type, badMemeNum);
     }
 
     /// <summary>
@@ -60,8 +65,11 @@ public class PlanetMeme : MonoBehaviour {
     public void OnCaptured() {
         Debug.Log("Planet " + name + " become a satellite.");
 
-        status = PlanetMemeStatus.Satellite;
+        if (status != PlanetMemeStatus.Satellite)
+            status = PlanetMemeStatus.Satellite;
         
         manager.OnPlanetCaptured(gameObject);
     }
+
+    private List<string> badMemeType = new List<string> { "統神", "冰冰姐", "瑞克搖", "蹦蹦姊", "Toyz", "杰哥", "香蕉君" };
 }

@@ -12,9 +12,14 @@ public class AnimationMgr : MonoBehaviour
         
     }
 
-    public void Show統神()
+    public void Show統神走路()
     {
-        animator.SetTrigger("統神");
+        animator.SetTrigger("統神走路");
+    }
+
+    public void Show統神跌倒()
+    {
+        animator.SetTrigger("統神跌倒");
     }
 
     public void Show冰冰姐()
