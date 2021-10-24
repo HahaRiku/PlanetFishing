@@ -86,7 +86,8 @@ public class Hook : MonoBehaviour
             {
                 if (hookedPlanets.Count > 0)
                 {
-                    AudioManagerScript.Instance.CoverPlayAudioClip("收回星球");
+                    //收回星球會與迷因音效重疊，先拔掉
+                    //AudioManagerScript.Instance.CoverPlayAudioClip("收回星球");
                 }
                 else
                 {
