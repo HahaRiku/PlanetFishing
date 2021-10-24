@@ -11,27 +11,30 @@ public class Meteorite : MonoBehaviour
     private float ramdomSita;
     private float lifeTime;
 
-    //²£¥Í«á¦Vª±®a¤è¦V(+- Seta «×)­¸¹L¥h
+    private float radius;
+    private Rigidbody rigidbody;
+
+    //ç”¢ç”Ÿå¾Œå‘ç©å®¶æ–¹å‘(+- Seta åº¦)é£›éå»
     // Start is called before the first frame update
     void Start()
     {
-        //Seta «×
+        //Seta åº¦
         Seta = 35 * Mathf.Deg2Rad;
 
-        //30% ª½®g
+        //30% ç›´å°„
         float isEveil = Random.Range(0, 1);
         if(isEveil <= 0.3)
             Seta = 5 * Mathf.Deg2Rad;
 
-        //³Ñ¤U¦s¦b®É¶¡
+        //å‰©ä¸‹å­˜åœ¨æ™‚é–“
         lifeTime = 10;
 
-        //¹ïª±®a­¸¦V¶q
+        //å°ç©å®¶é£›å‘é‡
         flyTo = -this.transform.position + m_player.transform.position;
         flyTo.z = 0;
         flyTo = flyTo.normalized;
 
-        //¤T¨¤¨ç¼Æ+- Seta «×
+        //ä¸‰è§’å‡½æ•¸+- Seta åº¦
         ramdomSita = Random.Range(-Seta, Seta);
         float sinSita = Mathf.Sin(ramdomSita);
         float cosSita = Mathf.Cos(ramdomSita);
@@ -40,7 +43,8 @@ public class Meteorite : MonoBehaviour
         float trsferY = (flyTo.x * sinSita) + (flyTo.y * cosSita);
 
         flyTo = new Vector3(trsferX, trsferY, 0);
-        
+
+        rigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -48,10 +52,10 @@ public class Meteorite : MonoBehaviour
     {
         lifeTime -= Time.deltaTime;
 
-        float radius = (this.transform.position - GameObject.Find("Player").transform.position).sqrMagnitude;
-        this.GetComponent<Rigidbody>().AddForce(10f * flyTo);
+        radius = (this.transform.position - GameObject.Find("Player").transform.position).sqrMagnitude;
+        rigidbody.AddForce(10f * flyTo);
 
-        //Â÷ª±®a¤Ó»·®ø¥¢ (¥B¤Ó¤[)
+        //é›¢ç©å®¶å¤ªé æ¶ˆå¤± (ä¸”å¤ªä¹…)
         if (radius > 1000 && lifeTime<0)
         {
             Destroy(this.gameObject);
@@ -61,7 +65,7 @@ public class Meteorite : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        //­Y¹k¥Û¯{¨ìª±®a
+        //è‹¥éš•çŸ³ç ¸åˆ°ç©å®¶
         if(collision.gameObject.name == "Player")
         {
             GameObject m_camera = GameObject.Find("Player").transform.GetChild(0).gameObject;
