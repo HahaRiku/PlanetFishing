@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +17,11 @@ public class ResultView : MonoBehaviour {
     }
 
     /// <summary>
-    /// ¶i¹CÀ¸µ²ºâcall³o­Ó
+    /// é€²éŠæˆ²çµç®—callé€™å€‹
     /// </summary>
-    /// <param name="capturedMemeNum"> Á`¦@§ì¨úªº¦n°g¦]¼Æ¶q </param>
+    /// <param name="capturedMemeNum"> ç¸½å…±æŠ“å–çš„å¥½è¿·å› æ•¸é‡ </param>
     public void OnResult(int capturedMemeNum) {
+        BgmManager.Instance.PlayBgmClip("çµç®—bgm");
         CapturedMemeNum.text = capturedMemeNum.ToString();
         iTween.MoveTo(mainCamera.gameObject, iTween.Hash(
                 "position", new Vector3(-3.11f, -5.1f, -6.4f),
