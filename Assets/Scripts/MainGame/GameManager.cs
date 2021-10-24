@@ -17,6 +17,20 @@ public class GameManager : MonoBehaviour
 
     public Action<PlanetMemeType, int> OnHookTypeCallback;
 
+    private int hookedMemeCount;
+
+    void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this; //設定單例
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     void Start()
     {
         BgmManager.Instance.PlayBgmClip("遊戲內bgm");
@@ -24,6 +38,8 @@ public class GameManager : MonoBehaviour
         planetMemeManager.StartGenerating();
 
         OnHookTypeCallback = OnHooked;
+
+        hookedMemeCount = 0;
     }
 
     void Update()
@@ -36,6 +52,10 @@ public class GameManager : MonoBehaviour
         if (type == PlanetMemeType.Bad)
         {
             ShowAnimation(num);
+        }
+        else
+        {
+            ++hookedMemeCount;
         }
     }
 

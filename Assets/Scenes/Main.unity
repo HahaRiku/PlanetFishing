@@ -851,6 +851,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3761581877395903496, guid: feac59769fc8c36418a49b0062c3bdaf, type: 3}
   m_PrefabInstance: {fileID: 735506526}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &877760547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5222462657430806763, guid: feac59769fc8c36418a49b0062c3bdaf, type: 3}
+  m_PrefabInstance: {fileID: 735506526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab98d1674435e1046afb5ed4614db054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027724107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetMemeManager: {fileID: 610157633}
   player: {fileID: 7521822173294012312}
+  animatorMgr: {fileID: 877760547}
 --- !u!4 &1595203355
 Transform:
   m_ObjectHideFlags: 0
