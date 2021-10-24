@@ -197,7 +197,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5306988653287833709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -242,8 +242,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.4281597
+  m_Center: {x: 0, y: 0, z: 0.13455963}
 --- !u!114 &5306988653287833708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPos: {x: 0, y: 0, z: 0}
   Hook: {fileID: 1630163859888923466, guid: 3658d6614df6bf74097964f2b304d1e0, type: 3}
+  hookMaxma: 0
   hookEnerge: 0
   hookColdown: 0
   hookColdownMax: 0
