@@ -15,7 +15,8 @@ public class stickTo : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.position = targetObj.transform.position;
-        this.gameObject.transform.rotation = targetObj.transform.rotation;
+        //this.gameObject.transform.rotation = targetObj.transform.rotation;
+        this.gameObject.transform.rotation = new Quaternion(targetObj.transform.rotation.x, targetObj.transform.rotation.y ,0f,0f);
 
     }
 }
