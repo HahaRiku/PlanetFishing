@@ -316,13 +316,6 @@ MonoBehaviour:
     volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
-  - name: "\u7D71\u795E"
-    clips:
-    - {fileID: 8300000, guid: 4af2fb3db22886549adab4d895a6b3e9, type: 3}
-    tag: []
-    volumeScale: 0.3
-    overlappingMode: 0
-    outputSourceNum: 0
   - name: "\u904A\u6232\u5167bgm"
     clips:
     - {fileID: 8300000, guid: 104c5dd8258d9ed4dbde513ebc1a6ea3, type: 3}
@@ -337,11 +330,11 @@ MonoBehaviour:
     volumeScale: 0.3
     overlappingMode: 1
     outputSourceNum: 0
-  - name: "\u4F38\u51FA\u8207\u6536\u56DE\u6293\u5B50"
+  - name: "\u4F38\u51FA\u8207\u6536\u56DE\u722A\u5B50"
     clips:
     - {fileID: 8300000, guid: 1d564edda8af24c4a902efb200782b9a, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 1
     overlappingMode: 0
     outputSourceNum: 0
   - name: "\u6293\u4F4F\u661F\u7403"
@@ -354,6 +347,48 @@ MonoBehaviour:
   - name: "\u6536\u56DE\u661F\u7403"
     clips:
     - {fileID: 8300000, guid: c16edf721e2ec2147bbb311667892e7c, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u7D71\u795E"
+    clips:
+    - {fileID: 8300000, guid: 0dbc781faac9b854797f5336aaeb70f3, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u51B0\u51B0\u59D0"
+    clips:
+    - {fileID: 8300000, guid: 8d0ed2f8c846a5642b0c97aa33a5dc7a, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u8E66\u8E66\u59CA"
+    clips:
+    - {fileID: 8300000, guid: a5572e5ef19557e42aac83c2784bbb18, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u6770\u54E5"
+    clips:
+    - {fileID: 8300000, guid: 154615853a9bc7348a06bbf5f6d55816, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: Toyz
+    clips:
+    - {fileID: 8300000, guid: 41a047eae6d2fa3468fb66ac52f33400, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u9999\u8549\u541B"
+    clips:
+    - {fileID: 8300000, guid: d2cd3181096992e45ad9d6c7bef16fa4, type: 3}
     tag: []
     volumeScale: 0.3
     overlappingMode: 0

@@ -57,6 +57,7 @@ public class PlanetMeme : MonoBehaviour {
         // TODO: Effect
 
         GameManager.Instance.OnHookTypeCallback?.Invoke(type, badMemeNum);
+        AudioManagerScript.Instance.CoverPlayAudioClip(badMemeType[badMemeNum]);
     }
 
     /// <summary>

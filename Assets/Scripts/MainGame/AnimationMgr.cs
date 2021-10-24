@@ -7,11 +7,6 @@ public class AnimationMgr : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    void Start()
-    {
-        
-    }
-
     public void Show統神走路()
     {
         animator.SetTrigger("統神走路");

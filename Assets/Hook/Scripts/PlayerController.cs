@@ -41,8 +41,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log(pos);
 
             hookColdown = hookColdownMax;
-
-            AudioManagerScript.Instance.CoverPlayAudioClip("Hey");
         }
 
         //[右鍵] 緊急切斷

@@ -71,7 +71,6 @@ public class Hook : MonoBehaviour
             m_rigidbody.velocity = Vector3.zero;
             m_rigidbody.angularVelocity = Vector3.zero;
             isFlying = false;
-            
         }
 
         if (!isFlying)
@@ -85,12 +84,15 @@ public class Hook : MonoBehaviour
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
             {
-                if (hookedPlanets.Count > 0) {
+                if (hookedPlanets.Count > 0)
+                {
                     AudioManagerScript.Instance.CoverPlayAudioClip("收回星球");
                 }
-                else {
+                else
+                {
                     AudioManagerScript.Instance.CoverPlayAudioClip("伸出與收回抓子");
                 }
+
                 for (int i = 0; i < hookedPlanets.Count; i++) {
                     hookedPlanets[i].transform.parent = transform.parent;
                     hookedPlanets[i].OnCaptured();
