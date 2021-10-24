@@ -12,7 +12,7 @@ public class Meteorite : MonoBehaviour
     private float lifeTime;
 
     private float radius;
-    private Rigidbody rigidbody;
+    private Rigidbody meteoriteRigidbody;
 
     //產生後向玩家方向(+- Seta 度)飛過去
     // Start is called before the first frame update
@@ -44,7 +44,7 @@ public class Meteorite : MonoBehaviour
 
         flyTo = new Vector3(trsferX, trsferY, 0);
 
-        rigidbody = this.GetComponent<Rigidbody>();
+        meteoriteRigidbody = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -53,7 +53,7 @@ public class Meteorite : MonoBehaviour
         lifeTime -= Time.deltaTime;
 
         radius = (this.transform.position - GameObject.Find("Player").transform.position).sqrMagnitude;
-        rigidbody.AddForce(10f * flyTo);
+        meteoriteRigidbody.AddForce(10f * flyTo);
 
         //離玩家太遠消失 (且太久)
         if (radius > 1000 && lifeTime<0)
