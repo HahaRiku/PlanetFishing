@@ -10,7 +10,7 @@ public class PlanetMeme : MonoBehaviour {
 
     private PlanetMemeManager manager = null;
 
-    private int badMemeNum;
+    private string badMemeName;
 
     [SerializeField] private SpriteRenderer spriteRenderer = null;
 
@@ -30,8 +30,8 @@ public class PlanetMeme : MonoBehaviour {
         // Set image or something
         if (isBad)
         {
-            badMemeNum = Random.Range(0, badMemeType.Count);
-            spriteAnimator.SetTrigger(badMemeType[badMemeNum]);
+            badMemeName = badMemeType[Random.Range(0, badMemeType.Count)];
+            spriteAnimator.SetTrigger(badMemeName);
         }
         else
         {
@@ -56,10 +56,10 @@ public class PlanetMeme : MonoBehaviour {
 
         // TODO: Effect
 
-        GameManager.Instance.OnHookTypeCallback?.Invoke(type, badMemeNum);
+        GameManager.Instance.OnHookTypeCallback?.Invoke(type, badMemeName);
         if (type == PlanetMemeType.Bad)
         {
-            AudioManagerScript.Instance.CoverPlayAudioClip(badMemeType[badMemeNum]);
+            AudioManagerScript.Instance.CoverPlayAudioClip(badMemeName);
         }
     }
 
@@ -75,7 +75,7 @@ public class PlanetMeme : MonoBehaviour {
         manager.OnPlanetCaptured(gameObject);
     }
 
-    private List<string> badMemeType = new List<string> { "統神", "冰冰姐", "瑞克搖", "蹦蹦姊", "Toyz", "杰哥", "香蕉君" };
+    private List<string> badMemeType = new List<string> { "統神", "冰冰姐", "瑞克搖", "蹦蹦姊", "杰哥", "香蕉君", "Toyz" };
 
     public PlanetMemeType GetMemeType() {
         return type;

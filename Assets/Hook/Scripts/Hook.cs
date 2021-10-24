@@ -44,7 +44,7 @@ public class Hook : MonoBehaviour
         isFlying = true;
 
         hookLength = 540;
-        hookSpeed = 15;
+        hookSpeed = 10;
         hookDispearDis = 3.5f;
         isHooked = false;
 

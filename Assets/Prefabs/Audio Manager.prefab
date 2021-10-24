@@ -362,35 +362,35 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 8d0ed2f8c846a5642b0c97aa33a5dc7a, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 0.5
     overlappingMode: 0
     outputSourceNum: 0
   - name: "\u8E66\u8E66\u59CA"
     clips:
     - {fileID: 8300000, guid: a5572e5ef19557e42aac83c2784bbb18, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 0.5
     overlappingMode: 0
     outputSourceNum: 0
   - name: "\u6770\u54E5"
     clips:
     - {fileID: 8300000, guid: 154615853a9bc7348a06bbf5f6d55816, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 0.5
     overlappingMode: 0
     outputSourceNum: 0
   - name: Toyz
     clips:
     - {fileID: 8300000, guid: 41a047eae6d2fa3468fb66ac52f33400, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 0.5
     overlappingMode: 0
     outputSourceNum: 0
   - name: "\u9999\u8549\u541B"
     clips:
     - {fileID: 8300000, guid: d2cd3181096992e45ad9d6c7bef16fa4, type: 3}
     tag: []
-    volumeScale: 0.3
+    volumeScale: 0.5
     overlappingMode: 0
     outputSourceNum: 0
   audioSourcesPack:
