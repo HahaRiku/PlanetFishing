@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BarDigit : MonoBehaviour
 {
+    //格子模板
     public GameObject energyBlock;
 
     //能量上限
@@ -29,6 +30,7 @@ public class BarDigit : MonoBehaviour
     //用於定位 能量格子生成座標
     public GameObject PosOfEnergy;
 
+    private float lengtgOfBlock;//格子高
     private GameObject m_player;
     private PlayerController m_playerController;
 
@@ -37,15 +39,18 @@ public class BarDigit : MonoBehaviour
     {
         m_player = GameObject.Find("Player");
         m_playerController = m_player.GetComponent<PlayerController>();
+        lengtgOfBlock = energyBlock.GetComponent<SpriteRenderer>().bounds.size.y * transform.lossyScale.y;
+
         totalBlockNum = 5;
         nowBlockNum = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         fillLevel = GetFillLevel();
-        expectBlockNum = (int)fillLevel;
+        expectBlockNum = (int)(fillLevel * totalBlockNum);
 
         if (nowBlockNum < expectBlockNum)
             AddEnergy();
@@ -58,7 +63,11 @@ public class BarDigit : MonoBehaviour
         blockGameObj[nowBlockNum] = Instantiate(energyBlock);
 
         //位移格子
-        //blockGameObj[nowBlockNum].transform.position
+        blockGameObj[nowBlockNum].transform.position = PosOfEnergy.transform.position + new Vector3(0f, lengtgOfBlock, 0f) * nowBlockNum;
+
+
+        blockGameObj[nowBlockNum].transform.parent = PosOfEnergy.transform;
+
         nowBlockNum++;
     }
 
