@@ -71,13 +71,16 @@ public class Hook : MonoBehaviour
             m_rigidbody.velocity = Vector3.zero;
             m_rigidbody.angularVelocity = Vector3.zero;
             isFlying = false;
-            v_force = (m_parent.transform.position - transform.position) * hookSpeed;
+            
         }
 
         if (!isFlying)
         {
             //拉回來的力
-            m_rigidbody.AddForce(v_force * hookSpeed * 0.75f);
+            v_force = (m_parent.transform.position - transform.position) * hookSpeed;
+            
+            //拉回來
+            m_rigidbody.AddForce(v_force * 15f);
             
             //離玩家太近消失
             if (nowHookLength < hookDispearDis)
@@ -95,8 +98,10 @@ public class Hook : MonoBehaviour
         {
             if (player_flying)
             {
-                var forceVec = (v_force - m_parent.transform.position);
-                m_parent.GetComponent<Rigidbody>().AddForce(-1 * hookSpeed * (2f * forceVec.normalized + 0.3f * forceVec));
+                //反作用位移力
+                var forceVec = -1 * v_force;//(v_force - m_parent.transform.position);
+                forceVec.z = 0f;
+                m_parent.GetComponent<Rigidbody>().AddForce(1.1f * hookSpeed * (7f * forceVec.normalized + 0.1f * forceVec));
                 
             }
         }
@@ -124,14 +129,15 @@ public class Hook : MonoBehaviour
 
         if(collider.tag == "Meme" && collider.gameObject.name != m_parent.name )
         {
+            isFlying = false;// 正在回拉
+            isHooked = true;// 正在勾住
             Debug.Log("鉤子碰撞到了[迷因星球]: " + collider.gameObject.name + " !!!");
 
             collider.tag = "Untagged";
             collider.gameObject.transform.parent = this.gameObject.transform;
             hookedPlanets.Add(collider.gameObject.GetComponent<PlanetMeme>());
             hookedPlanets[hookedPlanets.Count - 1].OnHooked();
-            isFlying = false;// 正在回拉
-            isHooked = true;// 正在勾住
+            
         }
         
     }
