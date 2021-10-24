@@ -16,16 +16,6 @@ public class PlanetMemeManager : MonoBehaviour {
 
     private List<GameObject> planetsInGame = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
-    }
-
     /// <summary>
     /// 初始化迷因星球生成設定
     /// </summary>
@@ -75,7 +65,7 @@ public class PlanetMemeManager : MonoBehaviour {
 
         GameObject planet = Instantiate(PlanetMemePrefab, originalPos, Quaternion.Euler(0, 0, Random.Range(0, 359)));
         PlanetMeme planetMeme = planet.GetComponent<PlanetMeme>();
-        PlanetMemeType type = Random.Range(0, 10) > 4 ? PlanetMemeType.Good : PlanetMemeType.Bad;
+        PlanetMemeType type = Random.Range(0, 10) > 6 ? PlanetMemeType.Good : PlanetMemeType.Bad;
         planetMeme.OnGenerated(type, PlanetsSprite[Random.Range(0, PlanetsSprite.Length)], this, targetPos);
 
         planetsInGame.Add(planet);
