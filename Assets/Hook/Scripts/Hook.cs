@@ -88,16 +88,20 @@ public class Hook : MonoBehaviour
                 {
                     //收回星球會與迷因音效重疊，先拔掉
                     //AudioManagerScript.Instance.CoverPlayAudioClip("收回星球");
+                    for (int i = 0; i < hookedPlanets.Count; i++)
+                    {
+                        if (hookedPlanets[i] != null)
+                        {
+                            hookedPlanets[i].transform.parent = transform.parent;
+                            hookedPlanets[i].OnCaptured();
+                        }
+                    }
                 }
                 else
                 {
                     AudioManagerScript.Instance.CoverPlayAudioClip("伸出與收回抓子");
                 }
 
-                for (int i = 0; i < hookedPlanets.Count; i++) {
-                    hookedPlanets[i].transform.parent = transform.parent;
-                    hookedPlanets[i].OnCaptured();
-                }
                 Destroy(this.gameObject, 0.01f);
                 player_flying = false;
 
