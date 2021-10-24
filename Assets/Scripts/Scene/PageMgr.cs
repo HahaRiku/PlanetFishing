@@ -10,6 +10,11 @@ public class PageMgr : MonoBehaviour
     [SerializeField]
     private GameObject controlPage;
 
+    void Start()
+    {
+        BgmManager.Instance.PlayBgmClip("MenuBGM");
+    }
+
     public void ClickToControl()
     {
         controlPage.SetActive(true);
@@ -25,5 +30,4 @@ public class PageMgr : MonoBehaviour
         MenuBG.interactable = true;
         MenuBG.blocksRaycasts = true;
     }
-
 }

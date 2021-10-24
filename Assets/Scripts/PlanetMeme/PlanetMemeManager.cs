@@ -81,7 +81,12 @@ public class PlanetMemeManager : MonoBehaviour {
     public void OnPlanetCaptured(GameObject planet) {
         CancelInvoke("GenerateNewPlanet");
         planetsInGame.Remove(planet);
-        circlingRoute.ReceiveNewPlanet(planet);
+        if(planet.GetComponent<PlanetMeme>().GetMemeType() == PlanetMemeType.Good) {
+            circlingRoute.ReceiveNewPlanet(planet);
+        }
+        else {
+            Destroy(planet);
+        }
         Invoke("GenerateNewPlanet", generateInterval);
     }
 }

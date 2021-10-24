@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private AnimationMgr animatorMgr;
     [SerializeField] private ResultView resultView;
+    [SerializeField] private GameObject energyView;
 
     private PlayerController playerController;
 
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         OnHookTypeCallback = OnHooked;
         EndGameCallback = CheckEndGame;
 
+        energyView.SetActive(true);
         hookedMemeCount = 0;
     }
 
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerController.hookEnerge < 1)
         {
+            energyView.SetActive(false);
             resultView.OnResult(hookedMemeCount);
         }
     }
