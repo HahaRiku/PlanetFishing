@@ -33,7 +33,12 @@ public class PlanetMeme : MonoBehaviour {
         // Set image or something
         spriteRenderer.sprite = sp;
 
-        iTween.MoveTo(gameObject, _targetPos, (_targetPos - transform.localPosition).magnitude / moveSpeed);
+        //iTween.MoveTo(gameObject, _targetPos, (_targetPos - transform.localPosition).magnitude / moveSpeed);
+        iTween.MoveTo(gameObject, iTween.Hash(
+                "position", _targetPos,
+                "speed", moveSpeed,
+                "easeType", iTween.EaseType.easeInBounce
+            ));
     }
 
     /// <summary>
