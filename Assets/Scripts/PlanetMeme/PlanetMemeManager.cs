@@ -31,12 +31,13 @@ public class PlanetMemeManager : MonoBehaviour {
         generateInterval = _generateInterval;
     }
 
-    public void StartGenerating() {
-        GenerateNewPlanet();
+    public void StartGenerating()
+    {
+        StartCoroutine(GenerateNewPlanet(generateInterval));
     }
 
-    private void GenerateNewPlanet() {
-
+    IEnumerator GenerateNewPlanet(float countTime)
+    {
         float distance = Random.Range(spaceScale_min, spaceScale_max);
         // x^2 + y^2 = d^2 -> random 小於d^2的數開根號給x用，y再後續得出
         float random_Pow2ofX = Random.Range(0.0f, Mathf.Pow(distance, 2));
@@ -70,24 +71,32 @@ public class PlanetMemeManager : MonoBehaviour {
 
         planetsInGame.Add(planet);
 
-        if(planetsInGame.Count < memeNumMax)
-            Invoke("GenerateNewPlanet", generateInterval);
+        yield return new WaitForSeconds(countTime);
+
+        if (planetsInGame.Count < memeNumMax)
+        {
+            StartCoroutine(GenerateNewPlanet(generateInterval));
+        }
     }
 
     /// <summary>
     /// 星球被抓到了 丟去給circlingRoute管理(成為衛星)
     /// </summary>
     /// <param name="planet"></param>
-    public void OnPlanetCaptured(GameObject planet) {
-        CancelInvoke("GenerateNewPlanet");
+    public void OnPlanetCaptured(GameObject planet)
+    {
+        StopAllCoroutines();
         planetsInGame.Remove(planet);
-        if(planet.GetComponent<PlanetMeme>().GetMemeType() == PlanetMemeType.Good) {
+        if(planet.GetComponent<PlanetMeme>().GetMemeType() == PlanetMemeType.Good)
+        {
             circlingRoute.ReceiveNewPlanet(planet);
         }
-        else {
+        else
+        {
             Destroy(planet);
+            System.GC.Collect();
         }
-        Invoke("GenerateNewPlanet", generateInterval);
+        StartCoroutine(GenerateNewPlanet(generateInterval));
     }
 }
 
