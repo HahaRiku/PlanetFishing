@@ -17,6 +17,12 @@ public class PlayerController : MonoBehaviour
     public GameObject tempObj;
 
     public float Delta;
+
+    [SerializeField] private Sprite rightPlayer;
+    [SerializeField] private Sprite leftPlayer;
+    [SerializeField] private SpriteRenderer playerSR;
+    [SerializeField] private GameObject UFO;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +41,18 @@ public class PlayerController : MonoBehaviour
         //[左鍵] 發射
         if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && hookColdown <= 0.0f)
         {
-            Vector3 pos = GetMousePosition();
+            Vector3 pos_screen = GetMousePosition_Screen();
+
+            if(pos_screen.x >= Screen.width / 2) {
+                playerSR.sprite = rightPlayer;
+                UFO.transform.localScale = new Vector3(Mathf.Abs(UFO.transform.localScale.x), UFO.transform.localScale.y, UFO.transform.localScale.z);
+            }
+            else {
+                playerSR.sprite = leftPlayer;
+                UFO.transform.localScale = new Vector3(Mathf.Abs(UFO.transform.localScale.x) * -1, UFO.transform.localScale.y, UFO.transform.localScale.z);
+            }
+
+            Vector3 pos = ScreenPos2World(pos_screen);
 
             ShootHook(pos);
             Debug.Log(pos);
@@ -74,12 +91,16 @@ public class PlayerController : MonoBehaviour
         hookEnerge--;
     }
 
-    public Vector3 GetMousePosition()
+    public Vector3 GetMousePosition_Screen()
     {
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+        return mousePos;
+    }
+
+    public Vector3 ScreenPos2World(Vector3 mousePos) {
         mousePos.z = 15;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);//7
-        
+
         return mousePos;
     }
 }
