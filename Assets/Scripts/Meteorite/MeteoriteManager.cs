@@ -2,25 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeteoriteManager : MonoBehaviour {
+public class MeteoriteManager : MonoBehaviour
+{
     [SerializeField] private GameObject meteoritePrefab;
 
-    // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         StartGenerating();
     }
 
-    // Update is called once per frame
-    void Update() {
-        
+    private void StartGenerating()
+    {
+        StartCoroutine(GenerateMeteorite(3));
     }
 
-    private void StartGenerating() {
-        GenerateMeteorite();
-    }
-
-    private void GenerateMeteorite() {
+    IEnumerator GenerateMeteorite(float countTime)
+    {
         Instantiate(meteoritePrefab, new Vector3(Random.Range(-40, 40), Random.Range(-16, 16), 10), Quaternion.identity);
-        Invoke("GenerateMeteorite", 3f);
+        yield return new WaitForSeconds(countTime);
+        StartCoroutine(GenerateMeteorite(3));
     }
 }
