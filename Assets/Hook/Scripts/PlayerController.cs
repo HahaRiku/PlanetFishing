@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlayerPos = new Vector2(transform.position.x, transform.position.y);
-        hookColdownMax = 0.75f;
+        hookColdownMax = 0.55f;
         hookColdown = hookColdownMax;
 
         
@@ -80,7 +80,7 @@ public class PlayerController : MonoBehaviour
         //Debug用
         if (Input.GetKeyDown(KeyCode.R))
         {
-            hookEnerge += 2;
+            hookEnerge += 1;
         }
 
     }
