@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Hook;
 
+    //hookMaxma鉤子最大次數
+    public int hookMaxma;
+
     //hookEnerge(鉤子剩餘次數)
     public int hookEnerge;
 
@@ -30,7 +33,8 @@ public class PlayerController : MonoBehaviour
         hookColdownMax = 0.75f;
         hookColdown = hookColdownMax;
 
-        hookEnerge = 15;
+        
+        hookEnerge = hookMaxma;
     }
 
     // Update is called once per frame
@@ -71,6 +75,12 @@ public class PlayerController : MonoBehaviour
             }
 
             hookColdown = 0;
+        }
+
+        //Debug用
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            hookEnerge += 2;
         }
 
     }

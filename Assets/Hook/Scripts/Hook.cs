@@ -144,6 +144,7 @@ public class Hook : MonoBehaviour
         {
             isFlying = false;// 正在回拉
             isHooked = true;// 正在勾住
+
             Debug.Log("鉤子碰撞到了[迷因星球]: " + collider.gameObject.name + " !!!");
             AudioManagerScript.Instance.CoverPlayAudioClip("抓住星球");
 
