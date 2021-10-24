@@ -76,4 +76,8 @@ public class PlanetMeme : MonoBehaviour {
     }
 
     private List<string> badMemeType = new List<string> { "統神", "冰冰姐", "瑞克搖", "蹦蹦姊", "Toyz", "杰哥", "香蕉君" };
+
+    public PlanetMemeType GetMemeType() {
+        return type;
+    }
 }
