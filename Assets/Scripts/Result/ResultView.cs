@@ -9,6 +9,7 @@ public class ResultView : MonoBehaviour {
     [SerializeField] private Button BackMenuBtn;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private GameObject mainObj;
+    [SerializeField] private GameObject player;
     [SerializeField] private Text CapturedMemeNum;
 
     void Start() {
@@ -23,11 +24,13 @@ public class ResultView : MonoBehaviour {
     public void OnResult(int capturedMemeNum) {
         BgmManager.Instance.PlayBgmClip("結算bgm");
         CapturedMemeNum.text = capturedMemeNum.ToString();
+        player.transform.localPosition = new Vector3(0f, 0f, 10f);
         iTween.MoveTo(mainCamera.gameObject, iTween.Hash(
                 "position", new Vector3(-3.11f, -5.1f, -6.4f),
                 "time", 1f,
                 "easeType", iTween.EaseType.easeInExpo
             ));
+
         iTween.ValueTo(gameObject, iTween.Hash(
                 "from", 75,
                 "to", 29,
