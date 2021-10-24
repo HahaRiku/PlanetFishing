@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        BgmManager.Instance.PlayBgmClip("遊戲內bgm");
         planetMemeManager.Init(5, 30, 20, player, 0.5f);
         planetMemeManager.StartGenerating();
     }

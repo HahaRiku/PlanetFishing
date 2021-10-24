@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,19 +11,19 @@ public class Hook : MonoBehaviour
     public Vector3 v_force;
     public float nowHookLength;
 
-    //hookLength(¹_¤lªø«×)
+    //hookLength(é‰¤å­é•·åº¦)
     public float hookLength;
 
-    //hookSpeed(¥X¹_³t«×)
+    //hookSpeed(å‡ºé‰¤é€Ÿåº¦)
     public float hookSpeed;
 
-    //hookDispearDis(®ø¥¢¶ZÂ÷)
+    //hookDispearDis(æ¶ˆå¤±è·é›¢)
     public float hookDispearDis;
 
-    //isHooked(¤Ä¦í¤¤?)
+    //isHooked(å‹¾ä½ä¸­?)
     public bool isHooked;
 
-    //ª±®a¦ì²¾±Ò¥Î?
+    //ç©å®¶ä½ç§»å•Ÿç”¨?
     public bool isDisplacementFunc;
     public bool player_flying;
 
@@ -36,7 +36,7 @@ public class Hook : MonoBehaviour
     void Start()
     {
         m_parent = this.transform.parent;
-        //¦ì²¾¨ìª±®a¨­¤W
+        //ä½ç§»åˆ°ç©å®¶èº«ä¸Š
         //transform.position = m_player.transform.position;
         transform.position = m_parent.transform.position;
 
@@ -55,13 +55,13 @@ public class Hook : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //¥Ø«eÃ·¤lªø«×
+        //ç›®å‰ç¹©å­é•·åº¦
         nowHookLength = (m_parent.transform.position - transform.position).sqrMagnitude;
 
-        //µeÃ·¤l
+        //ç•«ç¹©å­
         DrawLine();
 
-        //¹_¤l²¾°Ê
+        //é‰¤å­ç§»å‹•
         if (isFlying && nowHookLength < hookLength)
         {
             m_rigidbody.AddForce((v_force - m_parent.transform.position) * hookSpeed);
@@ -76,16 +76,22 @@ public class Hook : MonoBehaviour
 
         if (!isFlying)
         {
-            //©Ô¦^¨Óªº¤O
+            //æ‹‰å›ä¾†çš„åŠ›
             v_force = (m_parent.transform.position - transform.position) * hookSpeed;
             
-            //©Ô¦^¨Ó
+            //æ‹‰å›ä¾†
             m_rigidbody.AddForce(v_force * 15f);
             
-            //Â÷ª±®a¤Óªñ®ø¥¢
+            //é›¢ç©å®¶å¤ªè¿‘æ¶ˆå¤±
             if (nowHookLength < hookDispearDis)
             {
-                for(int i = 0; i < hookedPlanets.Count; i++) {
+                if (hookedPlanets.Count > 0) {
+                    AudioManagerScript.Instance.CoverPlayAudioClip("æ”¶å›æ˜Ÿçƒ");
+                }
+                else {
+                    AudioManagerScript.Instance.CoverPlayAudioClip("ä¼¸å‡ºèˆ‡æ”¶å›æŠ“å­");
+                }
+                for (int i = 0; i < hookedPlanets.Count; i++) {
                     hookedPlanets[i].transform.parent = transform.parent;
                     hookedPlanets[i].OnCaptured();
                 }
@@ -98,7 +104,7 @@ public class Hook : MonoBehaviour
         {
             if (player_flying)
             {
-                //¤Ï§@¥Î¦ì²¾¤OnowHookLength
+                //åä½œç”¨ä½ç§»åŠ›nowHookLength
                 var forceVec = -1 * v_force;//(v_force - m_parent.transform.position);
                 forceVec.z = 0f;
                 forceVec = forceVec.normalized * hookSpeed;
@@ -109,7 +115,7 @@ public class Hook : MonoBehaviour
         }
     }
 
-    //µe¹_¤lªº½u(ÂêÃì)
+    //ç•«é‰¤å­çš„ç·š(é–éˆ)
     public void DrawLine()
     {
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
@@ -120,7 +126,7 @@ public class Hook : MonoBehaviour
         lineRenderer.alignment = LineAlignment.View;
     }
 
-    //¹_¤l¸I¨ì®ÉÄ²µo
+    //é‰¤å­ç¢°åˆ°æ™‚è§¸ç™¼
     public void OnTriggerEnter(Collider collider)
     {
         if (isHooked)
@@ -131,9 +137,10 @@ public class Hook : MonoBehaviour
 
         if(collider.tag == "Meme" && collider.gameObject.name != m_parent.name )
         {
-            isFlying = false;// ¥¿¦b¦^©Ô
-            isHooked = true;// ¥¿¦b¤Ä¦í
-            Debug.Log("¹_¤l¸I¼²¨ì¤F[°g¦]¬P²y]: " + collider.gameObject.name + " !!!");
+            isFlying = false;// æ­£åœ¨å›æ‹‰
+            isHooked = true;// æ­£åœ¨å‹¾ä½
+            Debug.Log("é‰¤å­ç¢°æ’åˆ°äº†[è¿·å› æ˜Ÿçƒ]: " + collider.gameObject.name + " !!!");
+            AudioManagerScript.Instance.CoverPlayAudioClip("æŠ“ä½æ˜Ÿçƒ");
 
             collider.tag = "Untagged";
             collider.gameObject.transform.parent = this.gameObject.transform;
@@ -150,4 +157,4 @@ public class Hook : MonoBehaviour
         isFlying = true;
     }
 }
-//player ®a¿ûÅé
+//player å®¶é‹¼é«”
