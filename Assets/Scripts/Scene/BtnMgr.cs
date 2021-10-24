@@ -20,7 +20,7 @@ public class BtnMgr : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void ClickToStart()
     {
         AudioManagerScript.Instance.Stop(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main");
     }
 
     public void ClickToQuit()

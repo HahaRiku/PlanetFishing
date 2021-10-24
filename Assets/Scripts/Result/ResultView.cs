@@ -11,15 +11,9 @@ public class ResultView : MonoBehaviour {
     [SerializeField] private GameObject mainObj;
     [SerializeField] private Text CapturedMemeNum;
 
-    // Start is called before the first frame update
     void Start() {
         PlayAgainBtn.onClick.AddListener(OnClickPlayAgainBtn);
         BackMenuBtn.onClick.AddListener(OnClickBackMenuBtn);
-    }
-
-    // Update is called once per frame
-    void Update() {
-        
     }
 
     /// <summary>

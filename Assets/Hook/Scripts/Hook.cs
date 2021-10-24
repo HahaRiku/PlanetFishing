@@ -97,6 +97,8 @@ public class Hook : MonoBehaviour
                 }
                 Destroy(this.gameObject, 0.01f);
                 player_flying = false;
+
+                GameManager.Instance.EndGameCallback?.Invoke();
             }
         }
 

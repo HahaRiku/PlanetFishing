@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
         //GameObject temp = Instantiate(Hook);
         //temp.transform.position = _mousePos;
         if (hookEnerge <= 0)
+        {
             return;
+        }
 
         tempObj = Instantiate(Hook);
         tempObj.GetComponent<Hook>().HookLaunchTo(_mousePos);
