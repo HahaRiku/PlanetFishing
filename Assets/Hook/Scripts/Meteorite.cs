@@ -21,7 +21,7 @@ public class Meteorite : MonoBehaviour
         //30% 直射
         float isEveil = Random.Range(0, 1);
         if(isEveil <= 0.3)
-            Seta = 0 * Mathf.Deg2Rad;
+            Seta = 5 * Mathf.Deg2Rad;
 
         //剩下存在時間
         lifeTime = 10;
