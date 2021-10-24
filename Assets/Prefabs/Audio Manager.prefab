@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 948691394135586740}
   - component: {fileID: 1167431340227673316}
   - component: {fileID: 249886725719119658}
+  - component: {fileID: 1801347010672115221}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -322,6 +323,41 @@ MonoBehaviour:
     volumeScale: 0.3
     overlappingMode: 0
     outputSourceNum: 0
+  - name: "\u904A\u6232\u5167bgm"
+    clips:
+    - {fileID: 8300000, guid: 104c5dd8258d9ed4dbde513ebc1a6ea3, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 1
+    outputSourceNum: 0
+  - name: "\u7D50\u7B97bgm"
+    clips:
+    - {fileID: 8300000, guid: ebe82ea12a34e534fbd3ec2c7844d30b, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 1
+    outputSourceNum: 0
+  - name: "\u4F38\u51FA\u8207\u6536\u56DE\u6293\u5B50"
+    clips:
+    - {fileID: 8300000, guid: 1d564edda8af24c4a902efb200782b9a, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u6293\u4F4F\u661F\u7403"
+    clips:
+    - {fileID: 8300000, guid: 8e0422fdb426871468cd968f5e19ad89, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
+  - name: "\u6536\u56DE\u661F\u7403"
+    clips:
+    - {fileID: 8300000, guid: c16edf721e2ec2147bbb311667892e7c, type: 3}
+    tag: []
+    volumeScale: 0.3
+    overlappingMode: 0
+    outputSourceNum: 0
   audioSourcesPack:
   - name: BGM
     source: {fileID: 7236540714783366773}
@@ -358,3 +394,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioListener: {fileID: 0}
+--- !u!114 &1801347010672115221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5185730546815818061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a36096966b697346bdb8aa53f1a6593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audiosPack: {fileID: 1167431340227673316}
+  BgmAudioSource: {fileID: 89176323018858170}
