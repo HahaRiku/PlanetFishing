@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             Vector3 pos = ScreenPos2World(pos_screen);
 
             ShootHook(pos);
-            Debug.Log(pos);
+            //Debug.Log(pos);
 
             hookColdown = hookColdownMax;
         }
