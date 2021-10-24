@@ -25,11 +25,12 @@ public class ResultView : MonoBehaviour {
         BgmManager.Instance.PlayBgmClip("結算bgm");
         CapturedMemeNum.text = capturedMemeNum.ToString();
         player.transform.localPosition = new Vector3(0f, 0f, 10f);
-        iTween.MoveTo(mainCamera.gameObject, iTween.Hash(
-                "position", new Vector3(-3.11f, -5.1f, -6.4f),
-                "time", 1f,
-                "easeType", iTween.EaseType.easeInExpo
-            ));
+        mainCamera.gameObject.transform.localPosition = new Vector3(-3.11f, -5.1f, -16.4f);
+        //iTween.MoveTo(mainCamera.gameObject, iTween.Hash(
+        //        "position", new Vector3(-3.11f, -5.1f, -6.4f),
+        //        "time", 1f,
+        //        "easeType", iTween.EaseType.easeInExpo
+        //    ));
 
         iTween.ValueTo(gameObject, iTween.Hash(
                 "from", 75,
