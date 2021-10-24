@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             Vector3 pos = GetMousePosition();
 
             ShootHook(pos);
-            Debug.Log(pos);
+            //Debug.Log(pos);
 
             hookColdown = hookColdownMax;
         }
