@@ -31,7 +31,7 @@ public class Bar : MonoBehaviour
         Vector3 length = barFrame.GetComponent<SpriteRenderer>().bounds.size;
         xlength = length.x * transform.lossyScale.x;
 
-
+        /*
         x = barIndex.transform.position.x;
         y = barIndex.transform.position.y;
         z = barIndex.transform.position.z;
@@ -39,8 +39,10 @@ public class Bar : MonoBehaviour
         sx = barIndex.transform.localScale.x;
         sy = barIndex.transform.localScale.y;
         sz = barIndex.transform.localScale.z;
-
-        
+        */
+        sx = barIndex.transform.localScale.x;
+        sy = barIndex.transform.localScale.y;
+        sz = barIndex.transform.localScale.z;
     }
 
     // Update is called once per frame
@@ -48,6 +50,12 @@ public class Bar : MonoBehaviour
     {
         if (LiqueNum <= 0)
             LiqueNum = 0;
+
+        x = barIndex.transform.position.x;
+        y = barIndex.transform.position.y;
+        z = barIndex.transform.position.z;
+
+
 
         barIndex.transform.position = new Vector3(x - (((1 - LiqueNum) / 2) * xlength), y, z);// + (-barIndex.transform.position + barFrame.transform.position);
         barIndex.transform.localScale = new Vector3(sx - (1 - LiqueNum), sy, sz);

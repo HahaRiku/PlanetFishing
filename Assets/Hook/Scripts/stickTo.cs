@@ -15,5 +15,7 @@ public class stickTo : MonoBehaviour
     void Update()
     {
         this.gameObject.transform.position = targetObj.transform.position;
+        this.gameObject.transform.rotation = targetObj.transform.rotation;
+
     }
 }
