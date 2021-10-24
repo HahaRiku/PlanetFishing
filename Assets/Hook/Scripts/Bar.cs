@@ -10,13 +10,15 @@ public class Bar : MonoBehaviour
     [Range(0f, 1f)]
     public float LiqueNum;
 
-    private Vector3 m_vector3;
+    //是X軸?
+    public bool isXbar;
 
-    private RectTransform bar_RectTran;
+    private Vector3 m_vector3;
     private float x;
     private float y;
     private float z;
     private float xlength;
+    private float ylength;
 
     private float sx;
     private float sy;
@@ -30,8 +32,8 @@ public class Bar : MonoBehaviour
 
         Vector3 length = barFrame.GetComponent<SpriteRenderer>().bounds.size;
         xlength = length.x * transform.lossyScale.x;
+        ylength = length.y * transform.lossyScale.y;
 
-        /*
         x = barIndex.transform.position.x;
         y = barIndex.transform.position.y;
         z = barIndex.transform.position.z;
@@ -39,10 +41,8 @@ public class Bar : MonoBehaviour
         sx = barIndex.transform.localScale.x;
         sy = barIndex.transform.localScale.y;
         sz = barIndex.transform.localScale.z;
-        */
-        sx = barIndex.transform.localScale.x;
-        sy = barIndex.transform.localScale.y;
-        sz = barIndex.transform.localScale.z;
+
+
     }
 
     // Update is called once per frame
@@ -51,14 +51,16 @@ public class Bar : MonoBehaviour
         if (LiqueNum <= 0)
             LiqueNum = 0;
 
-        x = barIndex.transform.position.x;
-        y = barIndex.transform.position.y;
-        z = barIndex.transform.position.z;
-
-
-
-        barIndex.transform.position = new Vector3(x - (((1 - LiqueNum) / 2) * xlength), y, z);// + (-barIndex.transform.position + barFrame.transform.position);
-        barIndex.transform.localScale = new Vector3(sx - (1 - LiqueNum), sy, sz);
+        if (isXbar)//X
+        {
+            barIndex.transform.position = new Vector3(x - (((1 - LiqueNum) / 2) * xlength), y, z);
+            barIndex.transform.localScale = new Vector3(sx - (1 - LiqueNum), sy, sz);
+        }
+        else//Y
+        {
+            barIndex.transform.position = new Vector3(x, y - (((1 - LiqueNum) / 2) * ylength), z);
+            barIndex.transform.localScale = new Vector3(sx, sy - (1 - LiqueNum), sz);
+        }
 
     }
 }
